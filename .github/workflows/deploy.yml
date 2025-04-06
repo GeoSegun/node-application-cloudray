@@ -1,1 +1,17 @@
 name: Deploy to CloudRay
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger CloudRay Webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.CLOUDRAY_WEBHOOK }}
+        run: |
+          curl -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d '{"test": false}'
