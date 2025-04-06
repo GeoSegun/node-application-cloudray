@@ -1,16 +1,1 @@
 name: Deploy to CloudRay
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger CloudRay Deployment Webhook
-        run: |
-          curl -X POST https://api.cloudray.io/w/3a2690bd-39ea-4d6f-8d09-edab6928450d \
-            -H "Content-Type: application/json" \
-            -d '{"test": false}'
